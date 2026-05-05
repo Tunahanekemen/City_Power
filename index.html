@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>City Power - 10.00s Challenge</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Branding Overlay -->
+        <div class="top-branding">
+            <img src="logo.jpg" alt="Logo" class="society-logo">
+            <span class="society-name">ODTÜ KKK ENERJİ TOPLULUĞU</span>
+        </div>
+
+        <!-- Background City -->
+        <div class="city-background" id="cityBg">
+            <div class="city-lights" id="cityLights"></div>
+            <div class="explosion-overlay" id="explosionOverlay"></div>
+        </div>
+
+        <!-- Game UI -->
+        <div class="ui-layer">
+            <div class="header">
+                <h1>CITY POWER</h1>
+                <p>Tam 10.00 saniyede gücü kes!</p>
+            </div>
+
+            <div class="battery-container">
+                <div class="battery">
+                    <div class="battery-cap"></div>
+                    <div class="battery-body">
+                        <div class="battery-level" id="batteryLevel"></div>
+                        <div class="battery-glow"></div>
+                        <div class="timer-display" id="timerDisplay">0.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="chargeBtn" class="charge-btn">
+                    <span class="btn-text">GÜCÜ VER</span>
+                    <span class="btn-subtext">BASILI TUT</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Result Screens -->
+        <div id="resultOverlay" class="result-overlay hidden">
+            <div class="result-content">
+                <h2 id="resultTitle">KAZANDIN!</h2>
+                <p id="resultMessage">Şehir ışıklandırıldı!</p>
+                <div class="final-score" id="finalScore">10.00s</div>
+                <button id="restartBtn" class="restart-btn">TEKRAR DENE</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
