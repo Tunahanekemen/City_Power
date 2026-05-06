@@ -14,7 +14,8 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-body, html {
+body,
+html {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -58,7 +59,7 @@ body, html {
     font-weight: bold;
     letter-spacing: 1px;
     color: white;
-    text-shadow: 0 0 5px rgba(0,0,0,0.8);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
 /* Background */
@@ -70,7 +71,8 @@ body, html {
     height: 100%;
     background: url('city_bg.png') no-repeat center center;
     background-size: cover;
-    z-index: 1; /* Was -1, moved up */
+    z-index: 1;
+    /* Was -1, moved up */
     filter: brightness(0.1);
     transition: filter 0.5s ease;
 }
@@ -105,7 +107,8 @@ body, html {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    z-index: 5; /* Still on top of city */
+    z-index: 5;
+    /* Still on top of city */
 }
 
 .header {
@@ -182,8 +185,13 @@ body, html {
 }
 
 @keyframes pulse-glow {
-    from { box-shadow: 0 0 10px rgba(0, 242, 255, 0.5); }
-    to { box-shadow: 0 0 30px rgba(0, 242, 255, 0.9); }
+    from {
+        box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+    }
+
+    to {
+        box-shadow: 0 0 30px rgba(0, 242, 255, 0.9);
+    }
 }
 
 .battery-glow {
@@ -202,7 +210,8 @@ body, html {
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Orbitron', sans-serif;
-    font-size: min(1.8rem, 8vw); /* Responsive size */
+    font-size: min(1.8rem, 8vw);
+    /* Responsive size */
     font-weight: bold;
     color: white;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -252,19 +261,19 @@ body, html {
 
 /* Result Overlay */
 .result-overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* More transparent */
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 100;
-    backdrop-filter: blur(5px); /* Less blur to see background */
+    z-index: 1000;
+    backdrop-filter: blur(6px);
     opacity: 1;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.4s ease;
 }
 
 .result-overlay.hidden {
@@ -273,12 +282,15 @@ body, html {
 }
 
 .result-content {
+    width: 90%;
+    max-width: 450px;
+    margin: 0 auto;
     text-align: center;
-    padding: 3rem;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    max-width: 80%;
+    padding: 2.5rem 1.5rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .result-content h2 {
@@ -321,9 +333,31 @@ body, html {
 
 /* Responsive */
 @media (max-width: 600px) {
-    .header h1 { font-size: 2rem; }
-    .battery { width: 100px; height: 180px; }
-    .charge-btn { width: 130px; height: 130px; }
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .battery {
+        width: 100px;
+        height: 180px;
+    }
+
+    .charge-btn {
+        width: 130px;
+        height: 130px;
+    }
+
+    .result-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .final-score {
+        font-size: 3.5rem;
+    }
+    
+    .result-content {
+        padding: 2rem 1rem;
+    }
 }
 
 /* Orientation handling */
@@ -331,24 +365,36 @@ body, html {
     .game-container {
         flex-direction: row;
         padding: 0.5rem;
-        padding-top: 3.5rem; /* Space for branding */
+        padding-top: 3.5rem;
+        /* Space for branding */
     }
+
     .top-branding {
         top: 0.5rem;
     }
+
     .ui-layer {
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
         max-width: none;
     }
-    .header { margin-top: 0; text-align: left; }
-    .controls { margin-bottom: 0; }
-    .battery { 
-        width: 100px; 
-        height: 160px; 
+
+    .header {
+        margin-top: 0;
+        text-align: left;
+    }
+
+    .controls {
+        margin-bottom: 0;
+    }
+
+    .battery {
+        width: 100px;
+        height: 160px;
         flex-shrink: 0;
     }
+
     .timer-display {
         font-size: 1.2rem;
     }
@@ -356,17 +402,49 @@ body, html {
 
 /* Animations */
 @keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
 }
 
 .shake {
@@ -374,9 +452,21 @@ body, html {
 }
 
 @keyframes explode {
-    0% { transform: scale(1); opacity: 0; }
-    50% { transform: scale(1.5); opacity: 1; filter: brightness(2); }
-    100% { transform: scale(2); opacity: 0; }
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+        filter: brightness(2);
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
 }
 
 .explode-anim {
@@ -389,7 +479,15 @@ body, html {
 }
 
 @keyframes red-pulse {
-    0% { background-color: rgba(255, 0, 0, 0); }
-    50% { background-color: rgba(255, 0, 0, 0.2); }
-    100% { background-color: rgba(255, 0, 0, 0); }
+    0% {
+        background-color: rgba(255, 0, 0, 0);
+    }
+
+    50% {
+        background-color: rgba(255, 0, 0, 0.2);
+    }
+
+    100% {
+        background-color: rgba(255, 0, 0, 0);
+    }
 }
