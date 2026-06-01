@@ -192,8 +192,8 @@ function endGame() {
     
     resultOverlay.classList.remove('hidden');
 
-    // Winning condition: 10.00 (allowing 0.05 tolerance for fun)
-    if (Math.abs(finalTime - MAX_TIME) < 0.05) {
+    // Winning condition: Exactly 10.00
+    if (finalTime === MAX_TIME) {
         resultTitle.innerText = "KAZANDIN!";
         resultTitle.style.color = "var(--success-color)";
         resultMessage.innerText = "Şehir tam kapasiteyle aydınlandı! Harika zamanlama.";
